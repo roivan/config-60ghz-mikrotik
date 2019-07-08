@@ -1,0 +1,35 @@
+# jul/06/2019 22:01:46 by RouterOS 6.44
+# software id = LIMX-G4HJ
+#
+# model = RBLHGG-60ad
+
+/interface w60g
+set [ find ] disabled=no frequency=64800 mode=bridge name=wlan60-1 password=\
+    xxxxxxx ssid=bridg-60
+/interface w60g station
+add mac-address=04:D6:AA:xx:xx:xx name=wlan60-station-1 parent=wlan60-1 \
+    remote-address=04:D6:AA:xx:xx:xx
+    
+    ###Station-Bridge
+    
+    /interface w60g
+set [ find ] disabled=no frequency=58320 isolate-stations=no mode=\
+    station-bridge name=wlan60-1 password=Mafalda1992 ssid=bridg-60
+/interface w60g station
+add mac-address=04:D6:AA:hh:xx:xx name=wlan60-station-2 parent=wlan60-1 \
+    put-in-bridge=bridge remote-address=04:D6:AA:xx:xx:xx
+    
+    #test 1.5 km
+    
+     connected: yes
+             frequency: 64800
+        remote-address: 04:D6:AA:hh:xx:xx
+               tx-mode: dmg
+                tx-mcs: 8
+           tx-phy-rate: 2.3Gbps
+                signal: 80
+                  rssi: -56
+             tx-sector: 45
+        tx-sector-info: right 0.6 degrees, up 0.6 degrees
+              distance: 1549.74m
+  tx-packet-error-rate: 0%
